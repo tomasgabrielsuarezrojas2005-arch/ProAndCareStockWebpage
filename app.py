@@ -9,12 +9,12 @@ def home():
 
 @app.route('/login', methods=['POST'])
 def login():
-    correo_ingresado = request.form.get('correo')
-    contrasena_ingresada = request.form.get('contrasena')   
+    correo_ingresado = request.form.get('correo').strip()
+    contrasena_ingresada = request.form.get('contrasena').strip()
     
-    with open('usuarios.txt', 'r') as user_pass:
+    with open('usuarios.txt', 'r', encoding="utf-8") as user_pass:
         for contra_user in user_pass:
-            resultado= contra_user.strip().split(",")
+            resultado= contra_user.split(",")
             if len(resultado) == 2:
                 correo_txt = resultado[0]
                 contrasena_txt = resultado[1]
